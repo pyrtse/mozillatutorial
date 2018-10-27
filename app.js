@@ -7,6 +7,14 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://database_user:password1@ds062818.mlab.com:62818/local_library';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
 var app = express();
 
 // view engine setup
